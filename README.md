@@ -4,7 +4,7 @@ C++ implementation for computing market-clearing prices and VCG prices in a matc
 1. Add ```matching_market.cpp``` as a library in your ```CMakeLists.txt```, and link it to your executable
 1. Include ```matching_market.h``` in your code
 1. A example usage can be found in main.cpp
-# Input format
+# Input Format
     Number of Buyers
     Valuation Matrix
 For example:
@@ -28,4 +28,4 @@ where
 + ![formula](https://render.githubusercontent.com/render/math?math=V^I_{B-j}) is the maximum total valuation with buyer j excluded
 + ![formula](https://render.githubusercontent.com/render/math?math=V^{I-i}_{B-j}) is the maximum total valuation with item i and buyer j excluded
 
-More details can be found in chapter 10,15 from the book ```Networks, Crowds, and Markets``` by David Easley 
+More details can be found in chapter 10,15 from the book ```Networks, Crowds, and Markets``` by ```David Easley ```
