@@ -5,7 +5,6 @@ C++ implementation for computing market-clearing prices and VCG prices in a matc
 2. Link ```lib_matching_market``` in your ```CMakeLists.txt```
 3. A example usage can be found in main.cpp
 # Input format
-    Input Format:
     Number of Buyers
     Valuation Matrix
 For example:
