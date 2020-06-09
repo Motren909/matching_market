@@ -151,6 +151,8 @@ class Matching_market{
         bool isPerfectMatching(vector<int>& constricted); //gives either perfect matching or a constricted set.
         void getPreferredSellers(); //update the graph structure
         void sellerRaisePrices(vector<int>& constricted);
+
+        //for marketClearingPrices
         int getMarketClearingPrices(int buyer_excluded = -1, int except = -1);
         //for VCG
         vector<int> getVCGPrices();

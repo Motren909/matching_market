@@ -1,7 +1,9 @@
-输入格式:
-买家数量
-买家valuation矩阵
-如
+Input Format:
+Number of Buyers
+Valuation Matrix
+
+For example:
+
 3
 12 4 2
 8 7 6

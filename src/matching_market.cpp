@@ -64,6 +64,7 @@ int Matching_market::findAugmentingPath(int start, vector<int>& constricted){
  * 4 5
  * 6 7
  * ...
+ * buyers are represented with odd indexes and vice versa.
  * */
 void Matching_market::match(int start, int end){
     matched[start]=matched[end]=1;
@@ -84,6 +85,9 @@ void Matching_market::match(int start, int end){
     return ;
 }
 
+/** raise each sellers' price by 1 unit, this is for the price-ascending step
+ * in the algorithm
+ * */
 void Matching_market::sellerRaisePrices(vector<int>& constricted){
     set<int> neighbors;
     for(int i=0;i<constricted.size();i++){
