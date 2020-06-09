@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/matching_market.h
+vector
+-
+queue
+-
+algorithm
+-
+cstring
+-
+set
+-
+
+/home/motren/market/homework/Market_Clearing/src/matching_market.cpp
+iostream
+-
+matching_market.h
+-
+

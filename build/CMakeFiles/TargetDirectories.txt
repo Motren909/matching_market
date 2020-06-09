@@ -1,0 +1,4 @@
+/home/motren/market/homework/Market_Clearing/build/CMakeFiles/edit_cache.dir
+/home/motren/market/homework/Market_Clearing/build/CMakeFiles/rebuild_cache.dir
+/home/motren/market/homework/Market_Clearing/build/CMakeFiles/lib_matching_market.dir
+/home/motren/market/homework/Market_Clearing/build/CMakeFiles/price.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,liblib_matching_market.so -o liblib_matching_market.so CMakeFiles/lib_matching_market.dir/src/matching_market.cpp.o 
