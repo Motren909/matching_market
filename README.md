@@ -13,3 +13,21 @@ For example:
     12 4 2
     8 7 6
     7 5 2
+# Reference
+The algorithm for finding the market-clearing prices can be found here:
+https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book-ch10.pdf
+
+
+And for VCG prices, the following algorithm is used:
+
+$$
+p_i(j)=V^I_{B-j}-V^{I-i}_{B-j}
+$$
+
+where
+
++ $p_i(j)$ is item $i$'s VCG price for buyer $j$, aka. the harm he causes to other buyers in possession of item $i$
++ $V^I_{B-j}$ is the maximum total valuation with buyer $j$ excluded
++ $V^{I-i}_{B-j}$ is the maximum total valuation with item $i$ and buyer $j$ excluded
+
+more details can be found in chapter 10,15 from the book ```Networks, Crowds, and Markets``` by David Easley 
