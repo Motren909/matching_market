@@ -24,8 +24,8 @@ And for VCG prices, the following algorithm is used:
 
 where
 
-+ $p_i(j)$ is item $i$'s VCG price for buyer $j$, aka. the harm he causes to other buyers in possession of item $i$
-+ $V^I_{B-j}$ is the maximum total valuation with buyer $j$ excluded
-+ $V^{I-i}_{B-j}$ is the maximum total valuation with item $i$ and buyer $j$ excluded
++ ![formula](https://render.githubusercontent.com/render/math?math=p_i(j)) is item i's VCG price for buyer j, aka. the harm he causes to other buyers in possession of item i
++ ![formula](https://render.githubusercontent.com/render/math?math=V^I_{B-j}) is the maximum total valuation with buyer j excluded
++ ![formula](https://render.githubusercontent.com/render/math?math=V^{I-i}_{B-j}) is the maximum total valuation with item i and buyer j excluded
 
 more details can be found in chapter 10,15 from the book ```Networks, Crowds, and Markets``` by David Easley 
