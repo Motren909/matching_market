@@ -20,9 +20,7 @@ https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book-ch10.pdf
 
 And for VCG prices, the following algorithm is used:
 
-$$
-p_i(j)=V^I_{B-j}-V^{I-i}_{B-j}
-$$
+https://latex.codecogs.com/gif.latex?p_i%28j%29%3DV%5EI_%7BB-j%7D-V%5E%7BI-i%7D_%7BB-j%7D
 
 where
 
