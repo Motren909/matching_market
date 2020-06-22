@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/price.dir/src/main.cpp.o  -o price -Wl,-rpath,/home/motren/market/homework/Market_Clearing/build liblib_matching_market.so 

@@ -8,12 +8,13 @@ int main(){
     int t;cin>>t;
     Matching_market s(t);
     s.inputValuation();
-    vector<int> res = s.getVCGPrices();
-    cout<<"Final VCG prices:"<<endl;
-    for(auto it:res){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    char x;cin>>x;
+
+    //Computing Market Clearing Prices
+    cout<<">>> Computing Market Clearing Prices ..."<<endl;
+    s.getMarketClearingPrices(); 
+    s.showPrices();
+    //Computing VCG Prices based on the matchings found in Market Clearing Prices
+    cout<<">>> Computing VCG Prices ..."<<endl;
+    s.getVCGPrices();
     return 0;
 }

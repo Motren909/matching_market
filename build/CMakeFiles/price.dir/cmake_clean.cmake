@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/price.dir/src/main.cpp.o"
+  "CMakeFiles/price.dir/src/main.cpp.obj"
+  "libprice.dll.a"
+  "price.exe"
+  "price.exe.manifest"
   "price.pdb"
-  "price"
 )
 
 # Per-language clean rules from dependency scanning.

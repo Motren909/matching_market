@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lib_matching_market.dir/src/matching_market.cpp.o"
+  "CMakeFiles/lib_matching_market.dir/src/matching_market.cpp.obj"
+  "liblib_matching_market.dll"
+  "liblib_matching_market.dll.a"
+  "liblib_matching_market.dll.manifest"
   "liblib_matching_market.pdb"
-  "liblib_matching_market.so"
 )
 
 # Per-language clean rules from dependency scanning.

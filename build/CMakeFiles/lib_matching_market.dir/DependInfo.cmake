@@ -4,9 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/motren/market/homework/Market_Clearing/src/matching_market.cpp" "/home/motren/market/homework/Market_Clearing/build/CMakeFiles/lib_matching_market.dir/src/matching_market.cpp.o"
+  "D:/ShareCache/Jingyu_1901213316/study/PKU/Class/1-2/Network, Crowds, and Markets/homework/Matching_Markets/src/matching_market.cpp" "D:/ShareCache/Jingyu_1901213316/study/PKU/Class/1-2/Network, Crowds, and Markets/homework/Matching_Markets/build/CMakeFiles/lib_matching_market.dir/src/matching_market.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "lib_matching_market_EXPORTS"
+  )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

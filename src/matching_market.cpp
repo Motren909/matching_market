@@ -20,12 +20,12 @@ int Matching_market::findAugmentingPath(int start, vector<int>& constricted){
     memset(pre, -1,sizeof(pre));
     
     q.push(S(start,1));pre[start]=-1;visited[start]=1;
-    // cout<<"BFS starting from: "<<start<<endl;
+    //  cout<<"BFS starting from: "<<start<<endl;
     while(!q.empty()){
         S cur=q.front();q.pop();
-        // cout<<"step "<<cur.step<<",node:"<<cur.idx<<"(";
-        // cout<<((matched[cur.idx]==1)?"matched":"unmatched")<<")";
-        // cout<<endl;
+        //  cout<<"step "<<cur.step<<",node:"<<cur.idx<<"(";
+        //  cout<<((matched[cur.idx]==1)?"matched":"unmatched")<<")";
+        //  cout<<endl;
         int dir = cur.step % 2; // 1-right 0-left
         if(dir == 0){//to left
             if(!matched[cur.idx]){
@@ -46,7 +46,7 @@ int Matching_market::findAugmentingPath(int start, vector<int>& constricted){
         else if(dir == 1){//to right
             constricted.push_back(cur.idx);
             for(int j: sellers){
-                if(G[cur.idx][j]==1){//go along unpaired edges
+                if(!visited[j] && G[cur.idx][j]==1){//go along unpaired edges
                     q.push(S(j,cur.step+1));
                     pre[j]=cur.idx;
                     visited[j]=1;
@@ -71,15 +71,15 @@ void Matching_market::match(int start, int end){
     //start from the right
     int cur=end;
     //cout<<"Augmenting path found:";
-    //cout<<cur;
+    // cout<<cur;
     //flip the augmenting path
     while(pre[cur]!=-1){
         int pre_node = pre[cur];
-        //cout<<"->"<<pre_node;
+        // cout<<"->"<<pre_node;
         G[cur][pre_node]=G[pre_node][cur]=(G[cur][pre_node]==2?1:2);//pair <-> unpair
         cur=pre[cur];
     }
-    //cout<<endl;
+    // cout<<endl;
    // cout<<"Matching states of nodes on the path have been flipped!"<<endl;
     // cout<<start<<"-"<<end<<" matched!"<<endl;
     return ;
@@ -100,7 +100,7 @@ void Matching_market::sellerRaisePrices(vector<int>& constricted){
     }
     for(auto it:neighbors){
         prices[it]+=1;
-        cout<<"seller #"<<it<<" raised 1 unit"<<endl;
+        // cout<<"seller #"<<it<<" raised 1 unit"<<endl;
     }
 }
 /** rescale the prices to make sure the minimum equals 0
@@ -108,10 +108,10 @@ void Matching_market::sellerRaisePrices(vector<int>& constricted){
  * */
 void Matching_market::offsetPrices(){
     int t=INF;
-    for(int i=0;i<num_buyer*2;i++){ //iterate through all the sellers
+    for(auto i:sellers){ //iterate through all the sellers
         t=min(t,prices[i]);
     }
-    for(int i=0;i<num_buyer*2;i++){
+    for(auto i:sellers){
         prices[i]-=t;
     }
 }
@@ -147,8 +147,8 @@ void Matching_market::getPreferredSellers(){
     memset(G,0, sizeof(G));
     memset(matched,0, sizeof(matched));
     for(int i: buyers){ //each odd number represents a buyer
-        int maxPayoff=Valuation[i][0] - prices[0];
-        vector<int> maxIdxs; maxIdxs.push_back(0);
+        int maxPayoff= -10000;
+        vector<int> maxIdxs; 
         for(int j: sellers){ //each even number represents a seller
             int payoff = Valuation[i][j] - prices[j];
             if( payoff >=0 ){ //non-negative
@@ -176,55 +176,65 @@ void Matching_market::getPreferredSellers(){
  *          except: idx of the buyer excluded for computing the total buyer valuation, this is for computing V^(I-i)_(B-j), default set to -1
  * return  vector of {welfare, welfare_excluded} the second return is the total valuation except for the buyer_excluded i.e. V^(I-i)_(B-j)
  * */
-int Matching_market::getMarketClearingPrices(int buyer_excluded, int except){
+int Matching_market::getMarketClearingPrices(int buyer_excluded, int seller_excluded){
     int cnt=0;
-    init(buyer_excluded);
-    //showPlayers();
+    // cout<<buyer_excluded<<","<<seller_excluded<<endl;
+    init(buyer_excluded, seller_excluded);
+    // showPlayers();
     while(1){
-        cout<<">>> ------ Round "<<cnt<<" ------<<<"<<endl;
-         //show updated prices
-        showPrices();
+        // cout<<">>> ------ Round "<<cnt<<" ------<<<"<<endl;
+        // show updated prices
+        // showPrices();
 
         getPreferredSellers();
-        //showG();
+        // showG();
         vector<int> constricted;
 
         if(isPerfectMatching(constricted)){
-            printf("Congratulations! You found the market clearing prices in %d steps.\n",cnt+1);
-            return getResult(except);
-            // return (except==-1)?getTotalValuation():getTotalValuationExceptBuyer(except);
+            // printf("Congratulations! You found the market clearing prices in %d steps.\n",cnt+1);
+            return getResult(buyer_excluded);
+            // return (except==-1)?getTotalValuation():getTotalValuationExceptBuyerandSeller(except);
         }
         else{
             //no augmenting path, cannot add more pairs
             //obtain a constricted set from the odd nodes (buyers)  
 
-            printf("No perfect matching found, ");
-            cout<<"Updated constricted:";
-            for(int i=0;i<constricted.size();i++){
-                cout<<" "<<constricted[i];
-            }
-            cout<<endl;
+            // printf("No perfect matching found, ");
+            // cout<<"Updated constricted:";
+            // for(int i=0;i<constricted.size();i++){
+            //     cout<<" "<<constricted[i];
+            // }
+            // cout<<endl;
             sellerRaisePrices(constricted);   //raise their prices by 1
             offsetPrices();    //offset to 0
            
         }
         cnt++;
     }
+    
 }
 /** func: compute VCG prices for the market based on two round of finding market-clearing prices
  * */
-vector<int> Matching_market::getVCGPrices(){
-    vector<int> VCG;
-    for (int i=1;i<num_buyer*2;i+=2){ //for each buyer
-        cout<<">>> ====================Acquiring VCG price for buyer #"<<(i-1)/2<<"===================== <<<"<<endl;
-        //VCG = V^I_(B-j) - V^(I-i)_(B-j)
-        //todo different modes for the pricing fuction:
-        cout<<">>>1. Computing maximum social valuation in absence of buyer j"<<endl;
-        int term1 = getMarketClearingPrices(i);//V^(I-i)_(B-j)
-        cout<<">>>2. Computing maximum social valuation in absence of buyer j and the corresponding item"<<endl;
-        int term2 = getMarketClearingPrices(-1, i); //V^(I)_(B-j)
-        cout<<">>>3. Result: The VCG price for buyer #"<<(i-1)/2<<" is "<<term1-term2<<endl; //using parsed index for buyer, not raw
+void Matching_market::getVCGPrices(){
+    VCG.clear();
+    // cout<<">>>0. Getting Market Clearing Prices and the matchings... "<<endl;
+    getMarketClearingPrices(); //this can be optimized to only be called 2 times
+    getMatched();//the matching has been determined here.
+    // cout<<">>>Market Clearing Prices Found:"<<endl;
+    // showPrices();
+    for (int j=1;j<num_buyer*2;j+=2){ //for each buyer
+        // cout<<">>> ====================Acquiring VCG price for buyer "<<(j-1)/2<<"===================== <<<"<<endl;
+        //VCG = V^I_(B-j) - V^(I-j)_(B-j)
+        //todo different modes for the pricing fuction:  
+        int i = SellerOf[j];
+        // cout<<">>>1. Computing maximum social valuation in absence of buyer "<<(j-1)/2<<" and the corresponding item: ";
+        int term2 = getTotalValuationExceptBuyerAndSeller(j,i); //V^(I-j)_(B-j)
+        // cout<<term2<<endl;
+        // cout<<">>>2. Computing maximum social valuation in absence of buyer "<<(j-1)/2<<": ";
+        int term1 = getTotalValuationExceptBuyer(j);//V^(I)_(B-j)
+        // cout<<term1<<endl;
+        // cout<<">>>3. Result: The VCG price for buyer "<<(j-1)/2<<" is "<<term1-term2<<endl; //using parsed index for buyer, not raw
         VCG.push_back(term1-term2);
     }
-    return VCG;
+    showVCG();
 }
