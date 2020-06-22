@@ -7,7 +7,9 @@ C++ implementation for computing market-clearing prices and VCG prices in a matc
 
 ## How to run?
 Built by GNU v8.1.0
+
 on Windows, simply run `./build/price.exe`, or rebuilt it yourself
+
 on Linux
 ```bash
 cd build
