@@ -44,4 +44,4 @@ where
 + ![formula](https://render.githubusercontent.com/render/math?math=V^I_{B-j}) is the maximum total valuation with buyer j excluded
 + ![formula](https://render.githubusercontent.com/render/math?math=V^{I-i}_{B-j}) is the maximum total valuation with item i and buyer j excluded
 
-Specifically, the program first runs the `Kuhn and Munkres Algorithm` to find a maximum weight perfect matching. Then runs the algorithm mentioned above to calculate VCG prices for each buyer based on the matching. More details can be found in chapter `10,15` from the book ```Networks, Crowds, and Markets``` by ```David Easley ```
+Specifically, the program first runs the `Kuhn and Munkres Algorithm` to find a maximum weight perfect matching. It then runs the algorithm mentioned above to calculate VCG prices for each buyer based on the matching. More details can be found in chapter `10,15` from the book ```Networks, Crowds, and Markets``` by ```David Easley ```
